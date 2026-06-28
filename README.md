@@ -30,10 +30,13 @@ formula from the tap checkout:
 
 ```bash
 scripts/update-raskraska-formula.sh vX.Y.Z
-brew audit --formula Formula/raskraska.rb
-brew install --build-from-source Formula/raskraska.rb
-brew test Formula/raskraska.rb
+brew style Formula/raskraska.rb
 git add Formula/raskraska.rb
 git commit -m "Update raskraska to vX.Y.Z"
 git push
+brew update
+brew audit --formula benzolium/tap/raskraska
+brew fetch benzolium/tap/raskraska
+brew install --build-from-source benzolium/tap/raskraska
+brew test benzolium/tap/raskraska
 ```
