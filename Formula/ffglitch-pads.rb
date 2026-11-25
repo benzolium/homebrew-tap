@@ -1,8 +1,8 @@
 class FfglitchPads < Formula
   desc "Local video glitch editor with four playable effect pads"
   homepage "https://github.com/benzolium/ffglitch-pads"
-  url "https://github.com/benzolium/ffglitch-pads/archive/refs/tags/v0.2.0.tar.gz"
-  sha256 "4a4d4ab161a9515cfac60391d72cec10609b1bd240b26ffdb094d5d07aa151cb"
+  url "https://github.com/benzolium/ffglitch-pads/archive/refs/tags/v0.2.1.tar.gz"
+  sha256 "e3a573a446a8199bf504e1cdcab74dff6858173358f4dfddccb1def9d04645c3"
   license all_of: ["MIT", "GPL-2.0-or-later"]
 
   depends_on "rust" => :build
