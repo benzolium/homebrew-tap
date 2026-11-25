@@ -1,8 +1,8 @@
 class FfglitchPads < Formula
   desc "Local video glitch editor with four playable effect pads"
   homepage "https://github.com/benzolium/ffglitch-pads"
-  url "https://github.com/benzolium/ffglitch-pads/archive/refs/tags/v0.2.2.tar.gz"
-  sha256 "503f5c3a711f5d9eaad47a7786db5b9554a3b21ce0d197a64cecd118aafa7706"
+  url "https://github.com/benzolium/ffglitch-pads/archive/refs/tags/v0.2.3.tar.gz"
+  sha256 "284956f8453e59d8abd3d37008ffb575bf425095319c558b8ad9c2fd0d4bb0bc"
   license all_of: ["MIT", "GPL-2.0-or-later"]
 
   depends_on "rust" => :build
@@ -21,9 +21,10 @@ class FfglitchPads < Formula
     system "cargo", "install", *std_cargo_args(path: ".")
     libexec.install bin/"ffglitch-pads"
     resource("ffedit").stage do
-      libexec.install "ffedit"
+      libexec.install "ffedit", "ffgac"
       pkgshare.install "readme.txt" => "FFglitch-README.txt"
     end
+    bin.install_symlink libexec/"ffgac"
     (bin/"ffglitch-pads").write_env_script libexec/"ffglitch-pads",
                                          FFEDIT: libexec/"ffedit",
                                          FFMPEG: Formula["ffmpeg"].opt_bin/"ffmpeg",
@@ -33,5 +34,6 @@ class FfglitchPads < Formula
   test do
     assert_match "Usage:", shell_output("#{bin}/ffglitch-pads --help")
     assert_match "ffglitch-0.10.2", shell_output("#{libexec}/ffedit -version")
+    assert_match "ffglitch-0.10.2", shell_output("#{bin}/ffgac -version")
   end
 end
